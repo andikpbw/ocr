@@ -1,0 +1,10 @@
+## 1.0.0
+
+* Initial production release of `ocr` — a modern, lightweight, zero-dependency Flutter OCR library.
+* **Core Models**: Added immutable `OcrImage` (RGBA, BGRA, YUV420, grayscale, pure-Dart BMP codec, Flutter `ui.Image`, and encoded PNG/JPEG/WebP/GIF decoding), `OcrConfig` (with `document`, `receipt`, `screenshot`, `digitsOnly`, and `fast` presets), `OcrResult` hierarchy (`OcrBlock` -> `OcrLine` -> `OcrWord` -> `OcrCharacter` -> `OcrCandidate`), `OcrMetrics`, and `OcrEntity`.
+* **Computer-Vision Preprocessing**: Implemented Rec. 709 grayscale conversion, automatic dark-mode polarity detection & inversion, histogram percentile contrast stretching, 3x3 median denoising, Otsu global thresholding, `O(W * H)` integral-image Sauvola & Bradley-Roth local adaptive thresholding, isolated-pixel despeckling, and coarse-to-fine projection-profile automatic deskewing.
+* **Segmentation & Layout Analysis**: Added two-pass Union-Find 8-connectivity CCL, multi-part glyph reattachment (`i`, `j`, `!`, `?`, `:`, `;`, `=`, `%`, `"`), vertical-projection touching-glyph splitting, dominant-cluster baseline estimation, bimodal adaptive word spacing, and reading-order paragraph/column clustering.
+* **Hybrid Multi-Cue Recognition**: Built multi-style analytical vector glyph atlas (`OcrVectorAtlas`), optional live platform font calibration (`OcrFontCalibrator`), multi-cue hybrid classifier (`OcrGlyphClassifier`), top-K safe contextual disambiguation (`OcrPostProcessor`), and 10-category structured entity extraction (`OcrEntityExtractor`).
+* **Export & Query APIs**: Added hit-testing (`wordAt`, `lineAt`, `blockAt`, `wordsInRect`), pattern search (`findMatches`), confidence filtering, and `toMarkdown()`, `toCsv()`, and `toJson()` serialization.
+* **Zero-Material Flutter UI Suite**: Built `OcrInspector`, `OcrResultViewer`, `OcrScannerOverlay`, `OcrEntityChips`, `OcrIcon`, and `OcrTheme` / `OcrThemeData` (`midnight`, `aurora`, `emerald`, `daylight`) using exclusively `package:flutter/widgets.dart` for full Flutter 3.47–3.50+ / Dart 3.14+ compatibility without deprecated `material.dart` imports.
+* Supported by [Humanize AI](https://humanize.id).
