@@ -445,30 +445,49 @@ class OcrCcl {
   }
 
   static bool _isPercentTriplet(
-    OcrGlyphBlob leftDot,
-    OcrGlyphBlob slash,
-    OcrGlyphBlob rightDot,
+    OcrGlyphBlob a,
+    OcrGlyphBlob b,
+    OcrGlyphBlob c,
     double lineHeight,
   ) {
+    // Identify which of the 3 neighboring blobs is the tall diagonal slash `/`
+    // (because slash.left may sit to the left of the upper-left circle in bold fonts).
+    final triple = <OcrGlyphBlob>[a, b, c]
+      ..sort((OcrGlyphBlob x, OcrGlyphBlob y) => y.height.compareTo(x.height));
+    final slash = triple[0];
+    final dotA = triple[1];
+    final dotB = triple[2];
+
     if (slash.height < lineHeight * 0.55) return false;
-    if (leftDot.height > lineHeight * 0.55 ||
-        rightDot.height > lineHeight * 0.55) {
+    if (dotA.height > lineHeight * 0.68 || dotB.height > lineHeight * 0.68) {
       return false;
     }
-    if (leftDot.width > lineHeight * 0.52 ||
-        rightDot.width > lineHeight * 0.52) {
+    if (dotA.width > lineHeight * 0.68 || dotB.width > lineHeight * 0.68) {
       return false;
     }
-    // Left circle must be in upper half, right circle in lower half.
-    if (leftDot.centerY >= slash.centerY || rightDot.centerY <= slash.centerY) {
+
+    final upperDot = dotA.centerY <= dotB.centerY ? dotA : dotB;
+    final lowerDot = identical(upperDot, dotA) ? dotB : dotA;
+
+    // Upper circle must sit above & left of lower circle, flanking the slash.
+    if (upperDot.centerY >= slash.centerY ||
+        lowerDot.centerY <= slash.centerY ||
+        upperDot.centerX >= lowerDot.centerX) {
       return false;
     }
-    final gap1 = slash.left - leftDot.right;
-    final gap2 = rightDot.left - slash.right;
-    if (gap1 > lineHeight * 0.22 || gap2 > lineHeight * 0.22) return false;
-    final combinedW =
-        math.max(rightDot.right, slash.right) -
-        math.min(leftDot.left, slash.left);
-    return combinedW <= lineHeight * 1.35;
+
+    final minLeft = math.min(
+      slash.left,
+      math.min(upperDot.left, lowerDot.left),
+    );
+    final maxRight = math.max(
+      slash.right,
+      math.max(upperDot.right, lowerDot.right),
+    );
+    final gap1 = slash.left - upperDot.right;
+    final gap2 = lowerDot.left - slash.right;
+    if (gap1 > lineHeight * 0.30 || gap2 > lineHeight * 0.30) return false;
+
+    return (maxRight - minLeft) <= lineHeight * 1.75;
   }
 }

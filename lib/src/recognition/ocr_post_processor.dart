@@ -53,8 +53,45 @@ class OcrPostProcessor {
     List<OcrCharacter> chars, {
     String? previousWordText,
   }) {
-    if (chars.isEmpty) return chars;
-    if (chars.length == 1) return chars;
+    if (chars.length <= 1) return chars;
+
+    // Split compound hyphenated/slashed tokens (e.g. `#INV-2026-0842`,
+    // `ORD/9941`) into independent segments so alphabetic prefixes (`INV`) are
+    // never coerced into digits by trailing numeric segments (`2026-0842`).
+    final hasDelimiter = chars.any(
+      (OcrCharacter c) => c.text == '-' || c.text == '/',
+    );
+    if (hasDelimiter) {
+      final combined = <OcrCharacter>[];
+      var segStart = 0;
+      for (var i = 0; i <= chars.length; i++) {
+        final atDelim =
+            i == chars.length || chars[i].text == '-' || chars[i].text == '/';
+        if (!atDelim) continue;
+        if (i > segStart) {
+          combined.addAll(
+            _refineSegment(
+              chars.sublist(segStart, i),
+              previousWordText: segStart == 0 ? previousWordText : null,
+            ),
+          );
+        }
+        if (i < chars.length) {
+          combined.add(chars[i]);
+        }
+        segStart = i + 1;
+      }
+      return combined;
+    }
+
+    return _refineSegment(chars, previousWordText: previousWordText);
+  }
+
+  static List<OcrCharacter> _refineSegment(
+    List<OcrCharacter> chars, {
+    String? previousWordText,
+  }) {
+    if (chars.length <= 1) return chars;
 
     // Count unambiguous digits and letters to infer word class.
     var strongDigits = 0;
