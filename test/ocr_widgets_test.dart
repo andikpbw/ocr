@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_ocr/flutter_ocr.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ocr/ocr.dart';
 
 Widget _wrap(Widget child, {OcrThemeData? theme}) {
   return Directionality(

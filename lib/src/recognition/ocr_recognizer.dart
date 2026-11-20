@@ -15,6 +15,8 @@ import 'ocr_engine.dart';
 /// Web (JS & Wasm), macOS, Windows, and Linux.
 ///
 /// ```dart
+/// import 'package:flutter_ocr/flutter_ocr.dart';
+///
 /// final recognizer = OcrRecognizer();
 /// final result = await recognizer.recognizeBytes(pngBytes);
 /// print(result.text);

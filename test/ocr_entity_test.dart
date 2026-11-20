@@ -1,5 +1,5 @@
+import 'package:flutter_ocr/flutter_ocr.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ocr/ocr.dart';
 
 void main() {
   group('OcrEntityExtractor', () {

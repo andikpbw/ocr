@@ -1,5 +1,5 @@
-name: ocr_example
-description: Interactive example showcasing the ocr Flutter package.
+name: flutter_ocr_example
+description: Interactive example showcasing the flutter_ocr package.
 publish_to: none
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  ocr:
+  flutter_ocr:
     path: ../
 
 dev_dependencies:

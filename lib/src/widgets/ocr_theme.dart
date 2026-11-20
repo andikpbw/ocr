@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-/// Visual styling configuration for all `ocr` UI widgets.
+/// Visual styling configuration for all `flutter_ocr` UI widgets.
 ///
 /// Built exclusively on `package:flutter/widgets.dart` with zero Material or
 /// Cupertino dependencies for seamless compatibility with Flutter 3.47+ and

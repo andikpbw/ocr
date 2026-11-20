@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://pub.dev/packages/ocr"><img src="https://img.shields.io/pub/v/ocr?color=38BDF8&style=flat-square" alt="pub.dev version" /></a>
-  <a href="https://pub.dev/packages/ocr/score"><img src="https://img.shields.io/pub/points/ocr?color=34D399&style=flat-square" alt="pub points" /></a>
+  <a href="https://pub.dev/packages/flutter_ocr"><img src="https://img.shields.io/pub/v/flutter_ocr?color=38BDF8&style=flat-square" alt="pub.dev version" /></a>
+  <a href="https://pub.dev/packages/flutter_ocr/score"><img src="https://img.shields.io/pub/points/flutter_ocr?color=34D399&style=flat-square" alt="pub points" /></a>
   <a href="https://github.com/andikpbw/ocr"><img src="https://img.shields.io/badge/dependencies-zero-FBBF24?style=flat-square" alt="Zero Dependencies" /></a>
   <a href="https://github.com/andikpbw/ocr/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-A78BFA?style=flat-square" alt="MIT License" /></a>
   <a href="https://humanize.id"><img src="https://img.shields.io/badge/Supported%20by-Humanize%20AI-10B981?style=flat-square" alt="Supported by Humanize AI" /></a>
 </p>
 
-# `ocr` — Modern, Lightweight & Accurate Flutter OCR Library
+# `flutter_ocr` — Modern, Lightweight & Accurate Flutter OCR Library
 
 A modern, lightweight, **zero-dependency** Optical Character Recognition (OCR) library for Flutter and Dart. Built from the ground up with a 6-stage computer-vision pipeline, dynamic platform font calibration, structured entity extraction, and a suite of sleek, interactive Flutter UI widgets—**with zero deprecated `package:flutter/material.dart` imports** for seamless compatibility across Flutter 3.32 through Flutter 3.50+ and Dart 3.8–3.14+ (including WebAssembly).
 
@@ -28,7 +28,7 @@ Real, unedited Flutter UI rendered directly by `OcrInspector`, `OcrScannerOverla
 
 ---
 
-## Why `ocr`?
+## Why `flutter_ocr`?
 
 | Feature | Details |
 | :--- | :--- |
@@ -44,11 +44,11 @@ Real, unedited Flutter UI rendered directly by `OcrInspector`, `OcrScannerOverla
 
 ## Installation
 
-Add `ocr` to your `pubspec.yaml`:
+Add `flutter_ocr` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  ocr: ^1.0.0
+  flutter_ocr: ^1.0.0
 ```
 
 Then run:
@@ -65,7 +65,7 @@ flutter pub get
 
 ```dart
 import 'dart:typed_data';
-import 'package:ocr/ocr.dart';
+import 'package:flutter_ocr/flutter_ocr.dart';
 
 Future<void> scanDocument(Uint8List imageBytes) async {
   // Decodes PNG, JPEG, WebP, GIF, or BMP natively with zero dependencies.
@@ -140,7 +140,7 @@ All UI components rely exclusively on `package:flutter/widgets.dart`, avoiding d
 
 ```dart
 import 'package:flutter/widgets.dart';
-import 'package:ocr/ocr.dart';
+import 'package:flutter_ocr/flutter_ocr.dart';
 
 Widget buildOcrStudio(Uint8List imageBytes, OcrResult? result, bool scanning) {
   return OcrInspector(

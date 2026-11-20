@@ -1,14 +1,14 @@
 import 'dart:typed_data';
 
 import 'package:flutter/widgets.dart';
-import 'package:ocr/ocr.dart';
+import 'package:flutter_ocr/flutter_ocr.dart';
 
 void main() {
   runApp(const OcrExampleApp());
 }
 
 /// Interactive Flutter OCR Studio example built purely with
-/// `package:flutter/widgets.dart` and `package:ocr/ocr.dart`.
+/// `package:flutter/widgets.dart` and `package:flutter_ocr/flutter_ocr.dart`.
 class OcrExampleApp extends StatelessWidget {
   /// Creates the [OcrExampleApp].
   const OcrExampleApp({super.key});

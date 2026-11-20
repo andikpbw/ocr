@@ -1,4 +1,4 @@
-name: ocr
+name: flutter_ocr
 description: >-
   Modern, lightweight, zero-dependency Flutter OCR library for accurate offline
   text recognition, auto-deskew, entity extraction, and interactive UI overlays.

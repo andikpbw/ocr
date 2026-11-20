@@ -17,8 +17,8 @@ import 'ocr_vector_atlas.dart';
 /// Abstract contract for pluggable OCR recognition backends.
 ///
 /// Implement this interface to connect external engines (e.g., native ML Kit,
-/// Apple Vision, Tesseract, or Cloud APIs) while preserving the full `ocr`
-/// models, entity extraction, and Flutter UI overlay ecosystem.
+/// Apple Vision, Tesseract, or Cloud APIs) while preserving the full
+/// `flutter_ocr` models, entity extraction, and Flutter UI overlay ecosystem.
 abstract class OcrEngine {
   /// Creates an [OcrEngine].
   const OcrEngine();

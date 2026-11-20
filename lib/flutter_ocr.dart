@@ -8,7 +8,7 @@
 ///
 /// ## Quick Start
 /// ```dart
-/// import 'package:ocr/ocr.dart';
+/// import 'package:flutter_ocr/flutter_ocr.dart';
 ///
 /// final recognizer = OcrRecognizer();
 /// final result = await recognizer.recognizeBytes(imageBytes);

@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 import 'dart:typed_data';
 
+import 'package:flutter_ocr/flutter_ocr.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ocr/ocr.dart';
 
 /// Computes Levenshtein edit distance to quantify Character Error Rate (CER).
 int _editDistance(String a, String b) {
